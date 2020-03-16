@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Курсы валют центрального банка";
+}
+
+<div class="row">
+    <div class="col-md-5">
+        <p>Загрузить курс с сайта ЦБ, будет отображено то что загружено</p>
+        <p>@Html.ActionLink("Загрузить курс", "LoadCurrencyRates", "Home", new { target = "_blank" })</p>
+        <p>Показать последние загруженные валюты за день</p>
+        <p>@Html.ActionLink("Получить курс", "GetCurrencyRate", "Home", new { target = "_blank" })</p>
+    </div>
+</div>
+

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CbRatesDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CurrencyRates">
+          <Key>
+            <PropertyRef Name="CR_id" />
+          </Key>
+          <Property Name="CR_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CR_CurrencyName" Type="nvarchar(max)" />
+          <Property Name="CR_CurrencyIso" Type="int" />
+          <Property Name="CR_FaceVAlue" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CR_StringCode" Type="varchar" MaxLength="50" />
+          <Property Name="CR_Rate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CR_UpdateDate" Type="datetime" />
+        </EntityType>
+        <Function Name="GetLatestRates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="CbRatesDatabaseModelStoreContainer">
+          <EntitySet Name="CurrencyRates" EntityType="Self.CurrencyRates" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CbRatesDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CurrencyRates">
+          <Key>
+            <PropertyRef Name="CR_id" />
+          </Key>
+          <Property Name="CR_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CR_CurrencyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CR_CurrencyIso" Type="Int32" />
+          <Property Name="CR_FaceVAlue" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CR_StringCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CR_Rate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CR_UpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="CbRatesDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CurrencyRates" EntityType="Self.CurrencyRates" />
+          <FunctionImport Name="GetLatestRates" ReturnType="Collection(CbRatesDatabaseModel.GetLatestRates_Result)" />
+        </EntityContainer>
+        <ComplexType Name="GetLatestRates_Result">
+          <Property Type="Int32" Name="CR_id" Nullable="false" />
+          <Property Type="String" Name="CR_CurrencyName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="CR_CurrencyIso" Nullable="true" />
+          <Property Type="Decimal" Name="CR_FaceVAlue" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="CR_StringCode" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="CR_Rate" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="CR_UpdateDate" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CbRatesDatabaseModelStoreContainer" CdmEntityContainer="CbRatesDatabaseEntities">
+          <EntitySetMapping Name="CurrencyRates">
+            <EntityTypeMapping TypeName="CbRatesDatabaseModel.CurrencyRates">
+              <MappingFragment StoreEntitySet="CurrencyRates">
+                <ScalarProperty Name="CR_id" ColumnName="CR_id" />
+                <ScalarProperty Name="CR_CurrencyName" ColumnName="CR_CurrencyName" />
+                <ScalarProperty Name="CR_CurrencyIso" ColumnName="CR_CurrencyIso" />
+                <ScalarProperty Name="CR_FaceVAlue" ColumnName="CR_FaceVAlue" />
+                <ScalarProperty Name="CR_StringCode" ColumnName="CR_StringCode" />
+                <ScalarProperty Name="CR_Rate" ColumnName="CR_Rate" />
+                <ScalarProperty Name="CR_UpdateDate" ColumnName="CR_UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetLatestRates" FunctionName="CbRatesDatabaseModel.Store.GetLatestRates">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CbRatesDatabaseModel.GetLatestRates_Result">
+                <ScalarProperty Name="CR_id" ColumnName="CR_id" />
+                <ScalarProperty Name="CR_CurrencyName" ColumnName="CR_CurrencyName" />
+                <ScalarProperty Name="CR_CurrencyIso" ColumnName="CR_CurrencyIso" />
+                <ScalarProperty Name="CR_FaceVAlue" ColumnName="CR_FaceVAlue" />
+                <ScalarProperty Name="CR_StringCode" ColumnName="CR_StringCode" />
+                <ScalarProperty Name="CR_Rate" ColumnName="CR_Rate" />
+                <ScalarProperty Name="CR_UpdateDate" ColumnName="CR_UpdateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
